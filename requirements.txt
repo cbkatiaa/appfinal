@@ -1,0 +1,12 @@
+pandas
+streamlit
+matplot
+google-auth
+google-auth-oauthlib
+google-api-python-client
+gspread
+oauth2client
+PyDrive
+gdrive_link_maker
+requests
+python-dotenv
