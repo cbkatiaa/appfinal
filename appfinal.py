@@ -6,6 +6,7 @@ Created on Wed Sep 11 19:12:33 2024
 """
 
 import streamlit as st
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import lines
