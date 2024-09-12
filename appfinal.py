@@ -1519,7 +1519,7 @@ elif opcion == 'Scouting':
 
 # Crear Radar Chart
     st.subheader('Radar Chart')
-    fig_radar = create_radar_chart(df, jugadores)
+    fig_radar = create_radar_chart(df_jugadores, jugadores)
     st.pyplot(fig_radar)
         
         # Crear Gráficos de Barras
