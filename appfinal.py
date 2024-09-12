@@ -1428,7 +1428,7 @@ elif opcion == 'Scouting':
     jugadores = st.multiselect('Selecciona Jugadores', df['Name'].unique())
     
     if len(jugadores) > 0:
-        df_jugadores = df[df['Name'].isin(jugadores)]
+        df = df[df['Name'].isin(jugadores)]
 	
 
     df['Press %']=df['Pressure Regains']/df['Pressures']
@@ -1519,7 +1519,7 @@ elif opcion == 'Scouting':
 
 # Crear Radar Chart
     st.subheader('Radar Chart')
-    fig_radar = create_radar_chart(df_jugadores, jugadores)
+    fig_radar = create_radar_chart(df, jugadores)
     st.pyplot(fig_radar)
         
         # Crear Gráficos de Barras
