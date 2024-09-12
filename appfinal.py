@@ -25,7 +25,7 @@ from dotenv import load_dotenv
 import json
 
 def create_radar_chart(df, jugadores):
-    labels = df.columns[1:]  # Asumiendo que la primera columna es el nombre del jugador
+    labels = df.columns[2:]  # Ignorar las dos primeras columnas (nombre y otra columna)
     num_vars = len(labels)
     
     angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
@@ -34,7 +34,13 @@ def create_radar_chart(df, jugadores):
     fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
     
     for jugador in jugadores:
-        values = df[df['Name'] == jugador].drop('Name', axis=1).values.flatten().tolist()
+        # Verificar si el jugador existe en el DataFrame
+        if jugador not in df['Name'].values:
+            st.warning(f"Jugador {jugador} no encontrado en el DataFrame.")
+            continue
+        
+        # Seleccionar valores desde la tercera columna en adelante
+        values = df[df['Name'] == jugador].iloc[:, 2:].values.flatten().tolist()
         values += values[:1]
         ax.plot(angles, values, linewidth=1, linestyle='solid', label=jugador)
         ax.fill(angles, values, alpha=0.25)
@@ -1422,7 +1428,7 @@ elif opcion == 'Scouting':
     jugadores = st.multiselect('Selecciona Jugadores', df['Name'].unique())
     
     if len(jugadores) > 0:
-        df = df[df['Name'].isin(jugadores)]
+        df_jugadores = df[df['Name'].isin(jugadores)]
 	
 
     df['Press %']=df['Pressure Regains']/df['Pressures']
