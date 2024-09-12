@@ -34,7 +34,7 @@ def create_radar_chart(df, jugadores):
     fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
     
     for jugador in jugadores:
-        values = df[df['Player'] == jugador].drop('Player', axis=1).values.flatten().tolist()
+        values = df[df['Name'] == jugador].drop('Name', axis=1).values.flatten().tolist()
         values += values[:1]
         ax.plot(angles, values, linewidth=1, linestyle='solid', label=jugador)
         ax.fill(angles, values, alpha=0.25)
